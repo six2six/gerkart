@@ -1,4 +1,4 @@
 class Driver < ActiveRecord::Base
   attr_accessible :email, :name
-  has_many :championships
+  has_and_belongs_to_many :championships
 end

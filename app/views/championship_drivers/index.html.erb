@@ -1,0 +1,14 @@
+<h2> Championship > Drivers </h2>
+
+<% @championship.drivers.each do |driver| %>
+<p><%= driver.name %>
+<% end %>
+
+<% if !@available_drivers.empty? %>
+    <p>Add drivers to championship:</p>
+    <%= form_tag("/championships/#{params[:championship_id]}/drivers", :method => 'post') do %>
+        <%= select_tag(:driver_id, options_from_collection_for_select(@available_drivers, :id, :name), :multiple => true) %>
+        <%= submit_tag %>
+    <% end %>
+<% end %>
+

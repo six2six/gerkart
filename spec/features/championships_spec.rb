@@ -6,9 +6,9 @@ feature 'Championships feature' do
         @championship.save
     end
 
-    scenario 'should have a link to the championship\'s drivers' do
-        visit '/championships/1'
-        find_link('Drivers').visible?
+    scenario 'should have a link to create a championship' do
+        visit '/championships'
+        has_link?('/championships/new')
     end
 
     scenario 'should create a championship' do
@@ -16,5 +16,10 @@ feature 'Championships feature' do
         fill_in 'Name', :with => 'My Championship'
         click_button('Create Championship')
         assert page.has_content?('My Championship')
+    end
+
+    scenario 'should have a link to the championship\'s drivers' do
+        visit '/championships/1'
+        find_link('Drivers').visible?
     end
 end

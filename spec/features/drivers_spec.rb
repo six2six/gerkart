@@ -13,6 +13,6 @@ feature 'Drivers feature' do
         visit '/drivers/new'
         fill_in 'Name', :with => 'One Driver'
         click_button('Create Driver')
-        assert page.has_content?('One Driver')
+        current_path.should == '/drivers/2'
     end
 end

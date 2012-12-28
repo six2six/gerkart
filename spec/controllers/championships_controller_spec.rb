@@ -2,6 +2,8 @@ describe ChampionshipsController do
     it 'should create a new championship' do
         post(:create, :championship => {:name => 'Default Championship'})
 
+        response.should redirect_to(championship_path(assigns(:championship)))
+
         assert_not_nil Championship.find_by_name('Default Championship')
         assert_equal(assigns(:championship).name, 'Default Championship')
     end

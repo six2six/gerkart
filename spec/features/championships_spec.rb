@@ -15,7 +15,12 @@ feature 'Championships feature' do
         visit '/championships/new'
         fill_in 'Name', :with => 'My Championship'
         click_button('Create Championship')
-        assert page.has_content?('My Championship')
+        current_path.should == '/championships/2'
+    end
+
+    scenario 'should display the championship\'s name' do
+        visit '/championships/1'
+        page.should have_text(@championship.name)
     end
 
     scenario 'should have a link to the championship\'s drivers' do

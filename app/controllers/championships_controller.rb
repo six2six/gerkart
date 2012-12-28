@@ -11,6 +11,6 @@ class ChampionshipsController < ApplicationController
         @championship = Championship.new(params[:championship])
         @championship.save
 
-        render :action => :show
+        redirect_to :action => :show, :id => @championship.id
     end
 end

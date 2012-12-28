@@ -58,6 +58,7 @@ Gerkart::Application.routes.draw do
 
   resources :championships do
     resources :drivers, :controller => 'championship_drivers'
+    resources :rounds, :controller => 'rounds'
   end
   resources :drivers
 

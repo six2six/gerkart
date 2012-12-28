@@ -20,6 +20,11 @@ feature 'Championships feature' do
 
     scenario 'should have a link to the championship\'s drivers' do
         visit '/championships/1'
-        find_link('Drivers').visible?
+        page.should have_link('Drivers', '/championships/1/drivers')
+    end
+
+    scenario 'should have a link to the championship\'s rounds' do
+        visit '/championships/1'
+        page.should have_link('Rounds', '/championships/1/rounds')
     end
 end

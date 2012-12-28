@@ -1,0 +1,7 @@
+<h2>Tracks</h2>
+
+<% if !@tracks.nil? %>
+    <% @tracks.each do |t| %>
+        <p><%= t.name %></p>
+    <% end %>
+<% end %>

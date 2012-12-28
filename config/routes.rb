@@ -61,5 +61,6 @@ Gerkart::Application.routes.draw do
     resources :rounds, :controller => 'rounds'
   end
   resources :drivers
+  resources :tracks
 
 end

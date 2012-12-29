@@ -1,0 +1,9 @@
+<%= f.fields_for :roundPosition, :index => driver.id do |s| %>
+<p><span class="driver-name"><%= driver.name %>
+    <%= s.label :position %>
+    <%= s.text_field :position, :size => 3 %>
+
+    <%= s.label :total_time %>
+    <%= s.text_field :total_time %>
+</p>
+<% end %>

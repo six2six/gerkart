@@ -8,7 +8,7 @@ feature 'Championships feature' do
 
     scenario 'should have a link to create a championship' do
         visit '/championships'
-        has_link?('/championships/new')
+        page.should have_link('Create Championship', '/championships/new')
     end
 
     scenario 'should create a championship' do

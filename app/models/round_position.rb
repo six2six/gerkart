@@ -1,5 +1,5 @@
 class RoundPosition < ActiveRecord::Base
   belongs_to :round
-  has_one :driver
+  belongs_to :driver
   attr_accessible :position, :total_time
 end

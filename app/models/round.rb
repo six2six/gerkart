@@ -1,6 +1,7 @@
 class Round < ActiveRecord::Base
   attr_accessible :date, :name
   belongs_to :championship
-  has_one :track
-  has_many :roundPositions, :as => :standings
+  belongs_to :track
+  has_many :roundPositions
+  accepts_nested_attributes_for :roundPositions
 end

@@ -1,21 +1,20 @@
 feature 'Championship Drivers feature' do
     background do
-        @championship = Championship.new(:name => 'First Championship')
-        @championship.save
-        @championship.drivers << Driver.new(:name => 'Existing Driver')
-
-        @driver= Driver.new(:name => 'First Driver')
-        @driver.save
+        create_championship_with_drivers [create_driver]
     end
 
     scenario 'should display championship\'s drivers' do
         visit '/championships/1/drivers'
-        page.has_text?('First Driver')
+        @default_championship.drivers.each do |driver|
+            page.should have_text(driver.name)
+        end
     end
 
     scenario 'should add a driver to a championship' do
+        create_driver(:name => 'Independent Driver')
+
         visit '/championships/1/drivers'
-        page.select('First Driver', :from => 'driver_id')
+        page.select('Independent Driver', :from => 'driver_id')
         page.click_button('Save changes')
     end
 end

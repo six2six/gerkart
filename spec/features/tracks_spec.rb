@@ -1,18 +1,17 @@
 feature 'Tracks feature' do
-
     background do
-        Track.new(:name => 'Default Track').save
-    end
-
-    scenario 'should have a page to create a new track' do
-        visit '/tracks/new'
-        fill_in 'Name', :with => 'One Track'
-        click_button 'Create Track'
-        assert page.has_text?('One Track')
+        create_track
     end
 
     scenario 'should display previously created tracks' do
         visit '/tracks'
-        assert page.has_text?('Default Track')
+        page.should have_text(@default_track.name)
+    end
+
+    scenario 'should create a track' do
+        visit '/tracks/new'
+        fill_in 'Name', :with => 'One Track'
+        click_button 'Create Track'
+        page.should have_text('One Track')
     end
 end

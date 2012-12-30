@@ -1,12 +1,11 @@
 feature 'Drivers feature' do
     background do
-        @driver = Driver.new(:name => 'First Driver')
-        @driver.save
+        create_driver
     end
 
     scenario 'should display a driver' do
         visit '/drivers/1'
-        assert page.has_text?('First Driver')
+        page.should have_text(@default_driver.name)
     end
 
     scenario 'should create a driver' do

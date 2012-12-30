@@ -10,6 +10,6 @@
     <%= f.label :track %>
     <%= f.select :track, options_from_collection_for_select(@available_tracks, :id, :name) %>
 
-    <%= render :partial => 'roundPosition', :collection => @drivers, :as => :driver, :locals => { :f => f } %>
+    <%= render :partial => 'roundPosition', :collection => @championship.drivers, :as => :driver, :locals => { :f => f } %>
     <%= f.submit %>
 <% end %>

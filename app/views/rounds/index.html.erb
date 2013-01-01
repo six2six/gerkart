@@ -1,0 +1,21 @@
+<h2>Championship > Rounds</h2>
+
+<table>
+    <thead>
+        <td>Round Name</td>
+        <td>Track</td>
+        <td>Date</td>
+        <td>Winner</td>
+        <td>Total Time</td>
+    </thead>
+    <tbody>
+<% @rounds.each do |round| %>
+    <tr>
+        <td><%= link_to round.name, championship_round_path(:id => round.id) %></a></td>
+        <td><%=round.track.name%></td>
+        <td><%=round.date.strftime '%d/%m/%Y' %></td>
+        <td><%=round.winner.driver.name %></td>
+        <td><%=round.winner.total_time.strftime '%T' %></td>
+<% end %>
+    </tbody>
+</table

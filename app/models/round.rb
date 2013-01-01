@@ -4,4 +4,8 @@ class Round < ActiveRecord::Base
   belongs_to :track
   has_many :roundPositions
   accepts_nested_attributes_for :roundPositions
+
+  def winner
+    roundPositions.select {|v| v.position == 1 }.first
+  end
 end

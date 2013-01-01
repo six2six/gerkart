@@ -1,17 +1,18 @@
 class RoundsController < ApplicationController
     def new
-        @championship = Championship.find_by_id(params[:championship_id])
+        @championship = Championship.find(params[:championship_id])
         @round = Round.new
         @available_tracks = Track.all
     end
 
     def create
         round = Round.new(params[:round].slice(:name, :date))
-        round.track = Track.find_by_id(params[:round][:track])
+        round.championship = Championship.find(params[:championship_id])
+        round.track = Track.find(params[:round][:track])
         round.save
         params[:round][:roundPosition].each do |standing|
             roundPosition = round.roundPositions.build(standing[1])
-            roundPosition.driver = Driver.find_by_id(standing[0])
+            roundPosition.driver = Driver.find(standing[0])
             roundPosition.save
         end
 
@@ -19,7 +20,10 @@ class RoundsController < ApplicationController
     end
 
     def show
-        @round = Round.find_by_id(params[:id])
-        @round_positions = RoundPosition.find_all_by_round_id(params[:id])
+        @round = Round.where(:id => params[:id], :championship_id => params[:championship_id]).first
+    end
+
+    def index
+        @rounds = Round.includes(:track, :roundPositions => [:driver]).where(:championship_id => params[:championship_id], :round_positions => {:position => 1 })
     end
 end

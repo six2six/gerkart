@@ -1,6 +1,6 @@
 <h2>Championship > Rounds</h2>
 
-<%= @round.date.strftime("%m/%d/%Y") %> - <%= @round.name %>
-<% @round_positions.each do |r| %>
+<%= @round.date.strftime("%m/%d/%Y") %> - <%= @round.name %> - <%= @round.track.name %>
+<% @round.roundPositions.includes(:driver).order('position').each do |r| %>
     <p><%= r.position %>. <%= r.total_time.strftime("%H:%M:%S") unless r.total_time.nil? %> <%= r.driver.name%></p>
 <% end %>

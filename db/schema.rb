@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230140034) do
+ActiveRecord::Schema.define(:version => 20130102114039) do
 
   create_table "championships", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(:version => 20121230140034) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "ranking_configurations", :force => true do |t|
+    t.integer  "championship_id"
+    t.integer  "position"
+    t.integer  "points"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "ranking_configurations", ["championship_id"], :name => "index_ranking_configurations_on_championship_id"
 
   create_table "round_positions", :force => true do |t|
     t.integer  "position"

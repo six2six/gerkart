@@ -4,3 +4,30 @@
 <%= link_to 'Drivers', [@championship, :drivers] %>
 
 <%= link_to 'Rounds', [@championship, :rounds] %>
+
+<h3>Ranking:</h3>
+
+<table>
+    <thead>
+        <tr>
+            <td>Position</td>
+            <td>Driver</td>
+            <% @championship.rounds.each do |round| %>
+            <td><%= round.name %>
+            <% end %>
+            <td>Points</td>
+        <tr>
+    </thead>
+    <% @ranking.each_with_index do |(k, v), index| %>
+        <tr>
+            <td><%= index + 1 %>
+            <td><%= k %></td>
+            <% v[:positions].each do |position| %>
+            <td><%= position%></td>
+            <% end %>
+            <td><%= v[:points] %></td>
+        </tr>
+    <% end %>
+    <tbody>
+    </tbody>
+</table>

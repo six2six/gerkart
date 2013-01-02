@@ -1,6 +1,6 @@
 class ChampionshipDriversController < ApplicationController
     def index
-        @championship = Championship.find_by_id(params[:championship_id])
+        @championship = Championship.includes(:drivers).find(params[:championship_id])
         @available_drivers = Driver.all - @championship.drivers
     end
 

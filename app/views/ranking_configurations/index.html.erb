@@ -1,0 +1,27 @@
+<table>
+    <thead>
+        <tr>
+            <td>&nbsp</td>
+            <td>Position</td>
+            <td>Points</td>
+        </tr>
+    </thead>
+    <tbody>
+<% @rankingConfigurations.each do |rankingConfiguration| %>
+        <tr>
+            <td><%= button_to 'delete', [@championship, rankingConfiguration], :method => 'delete'  %></td>
+            <td><%= rankingConfiguration.position %>
+            <td><%= rankingConfiguration.points %>
+        </tr>
+<% end %>
+    </tbody>
+</table>
+
+<%= form_for ([@championship, @rankingConfiguration]) do |f| %>
+    <%= f.label :position %>
+    <%= f.text_field :position %>
+
+    <%= f.label :points %>
+    <%= f.text_field :points %>
+    <%= f.submit %>
+<% end %>

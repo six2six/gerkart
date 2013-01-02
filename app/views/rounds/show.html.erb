@@ -14,5 +14,5 @@
     <tbody>
         <td><%= r.position %></td>
         <td><%= r.driver.name %></td>
-        <td><%= r.total_time.strftime("%H:%M:%S") %></td>
+        <td><%= r.total_time.strftime("%H:%M:%S") unless r.total_time.nil? %></td>
 <% end %>

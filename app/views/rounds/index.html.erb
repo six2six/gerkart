@@ -1,5 +1,7 @@
 <h2>Championship > Rounds</h2>
 
+<p><%= link_to 'Create Round', new_championship_round_path%></p>
+
 <table>
     <thead>
         <td>Round Name</td>
@@ -15,7 +17,7 @@
         <td><%=round.track.name%></td>
         <td><%=round.date.strftime '%d/%m/%Y' %></td>
         <td><%=round.winner.driver.name %></td>
-        <td><%=round.winner.total_time.strftime '%T' %></td>
+        <td><%=round.winner.total_time.strftime '%T' unless round.winner.total_time.nil? %></td>
 <% end %>
     </tbody>
 </table

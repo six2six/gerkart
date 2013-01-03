@@ -46,11 +46,11 @@ module Helpers
     end
 
     def create_ranking_configuration
-        configuration = RankingConfiguration.new(:position => 1, :points => 10)
+        configuration = RankingConfiguration.new(:position => 2, :points => 5)
         configuration.championship = @default_championship
         configuration.save
 
-        configuration = RankingConfiguration.new(:position => 2, :points => 5)
+        configuration = RankingConfiguration.new(:position => 1, :points => 10)
         configuration.championship = @default_championship
         configuration.save
     end

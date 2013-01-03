@@ -11,7 +11,7 @@ class RankingConfigurationsController < ApplicationController
         @rankingConfiguration = RankingConfiguration.new
         @championship = Championship.find(params[:championship_id])
 
-        @rankingConfigurations = RankingConfiguration.where(:championship_id => params[:championship_id])
+        @rankingConfigurations = RankingConfiguration.where(:championship_id => params[:championship_id]).order(:position)
     end
 
     def destroy

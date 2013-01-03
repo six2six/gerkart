@@ -36,21 +36,7 @@ feature 'Championship Rounds feature' do
     end
 
     scenario 'should list championship rounds' do
-        create_round({
-            :name => 'Round 1', :date => 10.days.ago, :track => @default_track,
-            :roundPositions => [
-                { :position => 1, :total_time => '2012/10/12 1:00:00', :driver => @default_championship.drivers[0] },
-                { :position => 2, :total_time => '2012/10/12 1:14:00', :driver => @default_championship.drivers[1] }
-            ]
-        })
-        create_round({
-            :name => 'Round 2', :date => 5.days.ago, :track => @default_track,
-            :roundPositions => [
-               { :position => 2, :total_time => Date.parse('2012/10/12 1:15:00'), :driver => @default_championship.drivers[0] },
-               { :position => 1, :total_time => Date.parse('2012/10/12 1:03:00'), :driver => @default_championship.drivers[1] }
-            ]
-        })
-
+        create_championship_rounds
         visit('/championships/1/rounds')
         page.should have_text 'Round 1'
         page.should have_text 'Round 2'

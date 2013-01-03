@@ -27,5 +27,32 @@ module Helpers
             roundPosition.save
         end
     end
+
+    def create_championship_rounds
+        create_round({
+            :name => 'Round 1', :date => 10.days.ago, :track => @default_track,
+            :roundPositions => [
+                { :position => 1, :total_time => '2012/10/12 1:00:00', :driver => @default_championship.drivers[0] },
+                { :position => 2, :total_time => '2012/10/12 1:14:00', :driver => @default_championship.drivers[1] }
+            ]
+        })
+        create_round({
+            :name => 'Round 2', :date => 5.days.ago, :track => @default_track,
+            :roundPositions => [
+               { :position => 1, :total_time => Date.parse('2012/10/12 1:15:00'), :driver => @default_championship.drivers[0] },
+               { :position => 2, :total_time => Date.parse('2012/10/12 1:03:00'), :driver => @default_championship.drivers[1] }
+            ]
+        })
+    end
+
+    def create_ranking_configuration
+        configuration = RankingConfiguration.new(:position => 1, :points => 10)
+        configuration.championship = @default_championship
+        configuration.save
+
+        configuration = RankingConfiguration.new(:position => 2, :points => 5)
+        configuration.championship = @default_championship
+        configuration.save
+    end
 end
 

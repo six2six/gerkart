@@ -20,14 +20,14 @@
             <td>Points</td>
         <tr>
     </thead>
-    <% @ranking.each_with_index do |(k, v), index| %>
+    <% @ranking.each_with_index do |(driver, results), index| %>
         <tr>
             <td><%= index + 1 %>
-            <td><%= k %></td>
-            <% v[:positions].each do |position| %>
-            <td><%= position%></td>
+            <td><%= driver.name %></td>
+            <% results[:roundPositions].each do |roundPosition| %>
+            <td><%= roundPosition.position%></td>
             <% end %>
-            <td><%= v[:points] %></td>
+            <td><%= results[:points] %></td>
         </tr>
     <% end %>
     <tbody>

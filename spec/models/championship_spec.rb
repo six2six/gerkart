@@ -1,5 +1,16 @@
 require 'spec_helper'
 
 describe Championship do
-  pending "add some examples to (or delete) #{__FILE__}"
+    before do
+        create_championship_with_drivers [create_driver(:name => 'One'), create_driver(:name => 'Two')]
+        create_track
+    end
+
+    it 'should build a sorted ranking' do
+        create_championship_rounds
+        create_ranking_configuration
+        ranking = @default_championship.build_ranking
+        ranking.values[0][:points].should == 20
+        ranking.keys[0].name == 'One'
+    end
 end

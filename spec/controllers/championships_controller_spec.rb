@@ -18,4 +18,15 @@ describe ChampionshipsController do
 
         assert_equal(assigns(:championship).drivers[0], driver)
     end
+
+
+    it 'should assign all the championships' do
+        Championship.create(:name => 'Default Championship')
+        Championship.create(:name => 'Default Championship')
+
+        get(:index)
+
+        assigns(:championships).size.should == 2
+    end
+
 end

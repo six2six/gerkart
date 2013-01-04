@@ -3,6 +3,10 @@ class ChampionshipsController < ApplicationController
         @championship = Championship.new
     end
 
+    def index
+        @championships = Championship.all
+    end
+
     def show
         @championship = Championship.includes(:rounds => {:roundPositions => :driver }).find(params[:id])
 

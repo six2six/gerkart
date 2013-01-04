@@ -1,18 +1,22 @@
-<h2>Championship > Rounds</h2>
+<h2><%= link_to @championship.name, @championship %> > Rounds</h2>
 
-<%= @round.date.strftime("%m/%d/%Y") %> - <%= @round.name %> - <%= @round.track.name %>
+<h3><%= @round.date.strftime("%d/%m/%Y") %> - <%= @round.name %> - <%= @round.track.name %></h3>
 
 <table>
     <thead>
         <tr>
-            <td>Position</td>
-            <td>Driver</td>
-            <td>Total Time</td>
+            <th>Position</th>
+            <th>Driver</th>
+            <th>Total Time</th>
         </tr>
     </thead>
-<% @round.roundPositions.includes(:driver).order('position').each do |r| %>
     <tbody>
-        <td><%= r.position %></td>
-        <td><%= r.driver.name %></td>
-        <td><%= r.total_time.strftime("%H:%M:%S") unless r.total_time.nil? %></td>
+<% @round.roundPositions.includes(:driver).order('position').each do |r| %>
+        <tr>
+            <td><%= r.position %></td>
+            <td><%= r.driver.name %></td>
+            <td><%= r.total_time.strftime("%H:%M:%S") unless r.total_time.nil? %></td>
+        </tr>
 <% end %>
+    </tbody>
+</table>

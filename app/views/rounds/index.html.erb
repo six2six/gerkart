@@ -1,14 +1,16 @@
-<h2>Championship > Rounds</h2>
+<h2><%= link_to @championship.name, @championship %> > Rounds</h2>
 
 <p><%= link_to 'Create Round', new_championship_round_path%></p>
 
 <table>
     <thead>
-        <td>Round Name</td>
-        <td>Track</td>
-        <td>Date</td>
-        <td>Winner</td>
-        <td>Total Time</td>
+        <tr>
+            <th>Round Name</th>
+            <th>Track</th>
+            <th>Date</th>
+            <th>Winner</th>
+            <th>Total Time</th>
+        </tr>
     </thead>
     <tbody>
 <% @rounds.each do |round| %>

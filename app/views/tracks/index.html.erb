@@ -1,7 +1,11 @@
 <h2>Tracks</h2>
 
+<p><%= link_to 'Create Track', new_track_path%></p>
+
 <% if !@tracks.nil? %>
+    <ul>
     <% @tracks.each do |t| %>
-        <p><%= t.name %></p>
+        <li><%= t.name %></li>
     <% end %>
+    </ul>
 <% end %>

@@ -1,8 +1,10 @@
-<h2> Championship > Drivers </h2>
+<h2><%= link_to @championship.name, @championship %> > Drivers </h2>
 
+<ul>
 <% @championship.drivers.each do |driver| %>
-<p><%= driver.name %></p>
+    <li><%= driver.name %></li>
 <% end %>
+</li>
 
 <% if !@available_drivers.empty? %>
     <p>Add drivers to championship:</p>

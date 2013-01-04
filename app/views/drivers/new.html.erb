@@ -1,6 +1,11 @@
+<h2><%= link_to 'Drivers', :drivers %> > Create Driver</h2>
+
 <%= form_for(@driver) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>
+
+    <%= f.label :email %>
+    <%= f.text_field :email %>
 
     <div class="action">
         <%= f.submit %>

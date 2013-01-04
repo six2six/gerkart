@@ -1,3 +1,9 @@
 <h2>Championships</h2>
 
-<%= link_to 'Create Championship', new_championship_path %>
+<p><%= link_to 'Create Championship', new_championship_path %></p>
+
+<ul>
+<% @championships.each do |championship| %>
+    <li><%= link_to championship.name, championship %></li>
+<% end %>
+</ul>

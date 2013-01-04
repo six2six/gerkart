@@ -1,25 +1,25 @@
-<h2>Championship</h2>
-<p>Name: <%= @championship.name %></p>
+<%= render :partial => 'layouts/menu' %>
 
+<h2>Championship: <%= @championship.name %></h2>
+<p>
 <%= link_to 'Drivers', [@championship, :drivers] %>
-
 <%= link_to 'Rounds', [@championship, :rounds] %>
-
 <%= link_to 'Ranking Configuration', [@championship, :ranking_configurations] %>
-
+</p>
 <h3>Ranking:</h3>
 
 <table>
     <thead>
         <tr>
-            <td>Position</td>
-            <td>Driver</td>
+            <th>Position</th>
+            <th>Driver</th>
             <% @championship.rounds.each do |round| %>
-            <td><%= round.name %>
+            <th><%= round.name %>
             <% end %>
-            <td>Points</td>
+            <th>Points</th>
         <tr>
     </thead>
+    <tbody>
     <% @ranking.each_with_index do |(driver, results), index| %>
         <tr>
             <td><%= index + 1 %>
@@ -30,6 +30,5 @@
             <td><%= results[:points] %></td>
         </tr>
     <% end %>
-    <tbody>
     </tbody>
 </table>

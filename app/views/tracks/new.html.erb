@@ -1,4 +1,5 @@
-<h2>Create Track</h2>
+<h2><%= link_to 'Tracks', :tracks %> > Create Track</h2>
+
 <%= form_for(@track) do |f| %>
     <%= f.label :name %>
     <%= f.text_field :name %>

@@ -4,8 +4,7 @@ class DriversController < ApplicationController
     end
 
     def create
-        @driver = Driver.new(params[:driver])
-        @driver.save
+        @driver = Driver.create(params[:driver])
 
         redirect_to :action => :show, :id => @driver.id
     end

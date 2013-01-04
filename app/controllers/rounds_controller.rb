@@ -19,10 +19,13 @@ class RoundsController < ApplicationController
     end
 
     def show
+        @championship = Championship.find(params[:championship_id])
         @round = Round.where(:id => params[:id], :championship_id => params[:championship_id]).first
     end
 
     def index
+        @championship = Championship.find(params[:championship_id])
+
         @rounds = Round.includes(:track, :roundPositions => [:driver]).where(:championship_id => params[:championship_id], :round_positions => {:position => 1 })
     end
 end

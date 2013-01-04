@@ -3,6 +3,10 @@ class DriversController < ApplicationController
         @driver = Driver.new
     end
 
+    def index
+        @drivers = Driver.all
+    end
+
     def create
         @driver = Driver.create(params[:driver])
 

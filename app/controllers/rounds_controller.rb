@@ -9,12 +9,11 @@ class RoundsController < ApplicationController
         round = Round.new(params[:round].slice(:name, :date))
         round.championship = Championship.find(params[:championship_id])
         round.track = Track.find(params[:round][:track])
-        round.save
         params[:round][:roundPosition].each do |standing|
             roundPosition = round.roundPositions.build(standing[1])
             roundPosition.driver = Driver.find(standing[0])
-            roundPosition.save
         end
+        round.save
 
         redirect_to :action => :show, :championship_id => params[:championship_id], :id => round.id
     end

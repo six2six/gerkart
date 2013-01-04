@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Championship do
     before do
-        create_championship_with_drivers [create_driver(:name => 'One'), create_driver(:name => 'Two')]
+        create_championship_with_drivers [create_driver(:name => 'One'), create_driver(:name => 'Two'), create_driver(:name => 'Never Races')]
         create_track
     end
 

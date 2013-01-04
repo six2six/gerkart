@@ -7,17 +7,16 @@ class Championship < ActiveRecord::Base
     conf = RankingConfiguration.build_for(self)
     conf.default = 0
     ranking = Hash.new
-    rounds.each do |round|
-        round.roundPositions.each do |roundPosition|
-            driverRanking = ranking[roundPosition.driver]
-            if driverRanking.nil?
-                driverRanking = {:points => conf[roundPosition.position], :roundPositions => [roundPosition]}
-                ranking[roundPosition.driver] = driverRanking
-            else
-                driverRanking[:points] = driverRanking[:points] + conf[roundPosition.position]
-                driverRanking[:roundPositions] << roundPosition
-            end
+
+    drivers.each do |driver|
+        driverRank = {:points => 0, :roundPositions => []}
+        rounds.each do |round|
+            roundPosition = round.roundPositions.find(lambda { RoundPosition.new }) {|item| item[:round_id] == round.id and item[:driver_id] == driver.id}
+                driverRank[:roundPositions] << roundPosition
+                driverRank[:points] = driverRank[:points] + conf[roundPosition.position]
         end
+
+        ranking[driver] = driverRank
     end
 
     Hash[ranking.sort_by {|driver, results| -results[:points]}]

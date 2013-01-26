@@ -3,6 +3,7 @@ class Round < ActiveRecord::Base
   belongs_to :championship
   belongs_to :track
   has_many :roundPositions
+  has_many :drivers, :through => :roundPositions
   accepts_nested_attributes_for :roundPositions
 
   def winner

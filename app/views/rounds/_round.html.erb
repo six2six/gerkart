@@ -1,0 +1,32 @@
+<%= form_for [@championship, @round] do |f| %>
+<p>
+    <%= f.label :date %>
+    <%= f.text_field :date, :size => 10, :value => f.object.date.nil?? '' : f.object.date.strftime("%d/%m/%Y") %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :track %>
+    <%= f.select :track, options_from_collection_for_select(@available_tracks, :id, :name, @round.track.id) %>
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>Driver</th>
+            <th>Position</th>
+            <th>Total Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%= f.fields_for :roundPositions, @roundPositions do |driver_fields| %>
+            <tr>
+               <td><%= driver_fields.hidden_field :driver_id %><%= driver_fields.object.driver.name %></td>
+               <td><%= driver_fields.text_field :position, :size => 3 %></td>
+               <td><%= driver_fields.text_field :total_time, :size => 10, :value => driver_fields.object.total_time.nil?? '' : driver_fields.object.total_time.strftime("%H:%M:%S") %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+    <%= f.submit %>
+<% end %>

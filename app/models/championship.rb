@@ -9,10 +9,10 @@ class Championship < ActiveRecord::Base
     ranking = Hash.new
 
     drivers.each do |driver|
-        driverRank = {:points => 0, :roundPositions => []}
+        driverRank = {:points => 0, :rounds => []}
         rounds.each do |round|
             roundPosition = round.roundPositions.find(lambda { RoundPosition.new }) {|item| item[:round_id] == round.id and item[:driver_id] == driver.id}
-            driverRank[:roundPositions] << roundPosition
+            driverRank[:rounds] << {:position => roundPosition.position, :points => conf[roundPosition.position]}
             driverRank[:points] = driverRank[:points] + conf[roundPosition.position]
         end
 

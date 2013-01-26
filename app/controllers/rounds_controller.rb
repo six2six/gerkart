@@ -10,8 +10,10 @@ class RoundsController < ApplicationController
         round.championship = Championship.find(params[:championship_id])
         round.track = Track.find(params[:round][:track])
         params[:round][:roundPosition].each do |standing|
-            roundPosition = round.roundPositions.build(standing[1])
-            roundPosition.driver = Driver.find(standing[0])
+            if !standing[1][:position].empty?
+                roundPosition = round.roundPositions.build(standing[1])
+                roundPosition.driver = Driver.find(standing[0])
+            end
         end
         round.save
 

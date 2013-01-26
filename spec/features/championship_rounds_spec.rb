@@ -1,6 +1,6 @@
 feature 'Championship Rounds feature' do
     background do
-        create_championship_with_drivers [create_driver(:name => 'One'), create_driver(:name => 'Two')]
+        create_championship_with_drivers [create_driver(:name => 'One'), create_driver(:name => 'Two'), create_driver(:name => 'Three')]
         create_track
     end
 
@@ -26,6 +26,7 @@ feature 'Championship Rounds feature' do
         Round.find_by_id(1).name.should == 'Default Round'
         Round.find_by_id(1).track.name.should == 'Default Track'
         roundPositions = RoundPosition.find_all_by_round_id(1)
+        roundPositions.length.should == 2
         roundPositions.each do |roundPosition|
             if roundPosition.position == 1
                 roundPosition.driver.should == @default_championship.drivers[1]

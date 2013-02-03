@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        <%= f.fields_for :roundPositions, @roundPositions do |driver_fields| %>
+        <%= f.fields_for :roundPositions, @roundPositions, :include_id => false do |driver_fields| %>
             <tr>
                <td><%= driver_fields.hidden_field :driver_id %><%= driver_fields.object.driver.name %></td>
                <td><%= driver_fields.text_field :position, :size => 3 %></td>

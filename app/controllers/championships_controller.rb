@@ -8,7 +8,7 @@ class ChampionshipsController < ApplicationController
     end
 
     def show
-        @championship = Championship.includes(:drivers, :rounds => :roundPositions).find(params[:id])
+        @championship = Championship.includes(:rounds => :roundPositions).find(params[:id])
 
         @ranking = @championship.build_ranking
     end

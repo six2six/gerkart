@@ -22,7 +22,7 @@
             <tr>
                <td><%= driver_fields.hidden_field :driver_id %><%= driver_fields.object.driver.name %></td>
                <td><%= driver_fields.text_field :position, :size => 3 %></td>
-               <td><%= driver_fields.text_field :total_time, :size => 10, :value => driver_fields.object.total_time.nil?? '' : driver_fields.object.total_time.strftime("%H:%M:%S") %></td>
+               <td><%= driver_fields.text_field :total_time, :size => 10, :value => driver_fields.object.total_time && driver_fields.object.total_time.strftime("%H:%M:%S") %></td>
             </tr>
         <% end %>
     </tbody>

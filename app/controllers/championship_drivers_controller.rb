@@ -5,7 +5,7 @@ class ChampionshipDriversController < ApplicationController
     end
 
     def create
-        @championship = Championship.find_by_id(params[:championship_id])
+        @championship = Championship.find(params[:championship_id])
         @championship.drivers <<  Driver.find(params[:driver_id])
         redirect_to :action => 'index', :championship_id => params[:championship_id]
     end

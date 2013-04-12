@@ -10,7 +10,7 @@ describe Championship do
         create_championship_rounds
         create_ranking_configuration
         ranking = @default_championship.build_ranking
-        ranking.values[0][:points].should == 20
+        ranking.values[0][:points].should == 10
         ranking.keys[0].name == 'One'
     end
 end

@@ -16,9 +16,20 @@ class Championship < ActiveRecord::Base
             driverRank[:points] = driverRank[:points] + conf[roundPosition.position]
         end
 
+        find_worst_round(driverRank) do |worst_round|
+            worst_round[:drop] = true
+            driverRank[:points] = driverRank[:points] - worst_round[:points]
+        end
+
         ranking[driver] = driverRank
     end
 
     Hash[ranking.sort_by {|driver, results| -results[:points]}]
+  end
+
+  def find_worst_round driverRank
+    if driverRank[:rounds].length > 0
+        yield(driverRank[:rounds].min_by{|round| round[:points].nil?? 0 : round[:points] })
+    end
   end
 end

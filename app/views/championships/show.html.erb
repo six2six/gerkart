@@ -23,7 +23,7 @@
             <td><%= index + 1 %>
             <td><%= driver.name %></td>
             <% results[:rounds].each do |round| %>
-                <td><%= round[:points] %><%= round[:position].nil?? '' : ' (' + round[:position].to_s + 'º)' %> </td>
+                <td class="<%= round[:drop]? 'drop' : '' %>"><%= round[:points] %><%= round[:position].nil?? '' : ' (' + round[:position].to_s + 'º)' %> </td>
             <% end %>
             <td><%= results[:points] %></td>
         </tr>

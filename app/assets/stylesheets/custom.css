@@ -93,3 +93,6 @@ span.driver-name {
   display: inline-block;
 }
 
+td.drop {
+  text-decoration: line-through;
+}
